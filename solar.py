@@ -1,4 +1,4 @@
-# Copyright 2020 Kaustubh K LLC
+# Copyright 2020 Kaustubh K 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,13 @@
 
 
 import pandas as pd
-df = df = pd.read_csv('E:\GitHub\solar\data\Plant_1_Generation_Data.csv')
+import sys as sys
+import os as os
+
+if sys.platform.startswith('linux'):
+	df = pd.read_csv('../solar/data/Plant_1_Generation_Data.csv')
+else:
+	df = pd.read_csv('E:\GitHub\solar\data\Plant_1_Generation_Data.csv')
 df.describe()
 
 
@@ -30,8 +36,10 @@ df.head()
 
 # In[3]:
 
-
-df2 = pd.read_csv('E:\GitHub\solar\data\Plant_1_Weather_Sensor_Data.csv')
+if sys.platform.startswith('linux'):
+	df2 = pd.read_csv('../solar/data/Plant_1_Weather_Sensor_Data.csv')
+else:
+	df2 = pd.read_csv('E:\GitHub\solar\data\Plant_1_Weather_Sensor_Data.csv')
 df2.describe()
 
 
@@ -60,38 +68,6 @@ from datetime import datetime, timedelta
 df2['Datetime'] = pd.to_datetime(df2['DATE_TIME'])
 from datetime import datetime, timedelta
 df['Datetime'] = pd.to_datetime(df['DATE_TIME'])
-
-
-# In[8]:
-
-
-df2['Datetime']
-
-
-# In[9]:
-
-
-df2["Datetime"].map(pd.Timestamp.date).unique()
-
-
-# In[10]:
-
-
-df2["Datetime"].map(pd.Timestamp.date).unique()
-df['TOTAL_YIELD'][0]
-
-
-# In[11]:
-
-
-import collections, numpy
-collections.Counter(df2["Datetime"])
-
-
-# In[12]:
-
-
-df.isnull().values.any()
 
 
 # In[22]:
@@ -184,11 +160,16 @@ print(yhat)
 
 # In[32]:
 
-
+'''for dftest in df3.iterrows():
+	#x_input	= dftest.to_numpy()
+	#x_input = x_input.reshape((1, n_steps, n_features))
+	#yhat = model.predict(x_input, verbose=0)
+	#print(yhat)
+	print(dftest.to_numpy())'''
 x_input = array([[23, 33, 0.22, 4544], [20, 22, 0.13, 3778], [35, 40, 1.3, 6678]])
-x_input = x_input.reshape((1, n_steps, n_features))
-yhat = model.predict(x_input, verbose=0)
-print(yhat)
+print (type(array))
+
+
 
 
 # In[ ]:
