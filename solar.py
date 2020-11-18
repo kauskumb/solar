@@ -78,16 +78,6 @@ df3 = pd.concat([df, df2], axis=1)
 
 df3.ffill(axis = 0, inplace=True)
 
-#n = 0
-#loc=0
-#df3.fillna(0)
-
-#for p in df3['AMBIENT_TEMPERATURE']:
-#    df3[loc]['AMBIENT_TEMPERATURE'] 
-#    if p == 0:            
-#        df.set_value(loc, 'AMBIENT_TEMPERATURE',df3.get_value(loc - 1,'AMBIENT_TEMPERATURE'))
-#    loc = loc+1
-
 df3.drop(['DATE_TIME','PLANT_ID','SOURCE_KEY','DC_POWER','AC_POWER','TOTAL_YIELD','Datetime'], axis=1,inplace=True)
 df3 = df3[['AMBIENT_TEMPERATURE', 'MODULE_TEMPERATURE', 'IRRADIATION', 'DAILY_YIELD']]
 df3
@@ -118,21 +108,6 @@ def split_sequences(sequences, n_steps):
 	return array(X), array(y)
  
 # define input sequence
-#in_seq1 = array([10, 20, 30, 40, 50, 60, 70, 80, 90])
-#in_seq1 = df2['AMBIENT_TEMPERATURE'].to_numpy()
-#in_seq2 = array([15, 25, 35, 45, 55, 65, 75, 85, 95])
-#in_seq2 = df2['MODULE_TEMPERATURE'].to_numpy()
-#in_seq3 = df2['IRRADIATION'].to_numpy()
-#out_seq = array([in_seq1[i]+in_seq2[i] for i in range(len(in_seq1))])
-
-#out_seq = df.map(lambda x: x['Datetime']== df2['Datetime'] ) to_numpy()
-#out_seq = out_df['Datetime'].to_numpy()
-# convert to [rows, columns] structure
-#in_seq1 = in_seq1.reshape((len(in_seq1), 1))
-#in_seq2 = in_seq2.reshape((len(in_seq2), 1))
-#out_seq = out_seq.reshape((len(out_seq), 1))
-# horizontally stack columns
-#dataset = hstack((in_seq1, in_seq2, out_seq))
 dataset = df3.to_numpy()
 
 # choose a number of time steps
@@ -159,20 +134,10 @@ print(yhat)
 
 
 # In[32]:
-
-'''for dftest in df3.iterrows():
-	#x_input	= dftest.to_numpy()
-	#x_input = x_input.reshape((1, n_steps, n_features))
-	#yhat = model.predict(x_input, verbose=0)
-	#print(yhat)
-	print(dftest.to_numpy())'''
 x_input = array([[23, 33, 0.22, 4544], [20, 22, 0.13, 3778], [35, 40, 1.3, 6678]])
 print (type(array))
 
 
-
-
-# In[ ]:
 
 
 
